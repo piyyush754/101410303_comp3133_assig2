@@ -1,0 +1,180 @@
+/* 1. Page & Container */
+body {
+  background-color: #f3f4f6; /* matches off-white from other pages */
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: #495057;
+}
+
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding-top: 5rem; /* adds top spacing */
+  box-sizing: border-box;
+}
+
+/* 2. Card Layout */
+.signup-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eaedf0;
+  width: 100%;
+  max-width: 420px;
+  padding: 30px;
+  margin: 0 15px; /* some side spacing on mobile */
+  box-sizing: border-box;
+}
+
+/* Header */
+.signup-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.signup-header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #344767;
+}
+
+/* 3. Form Controls & Groups */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #344767;
+  font-size: 0.9rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #d2d6da;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.form-control:focus {
+  border-color: #5e72e4;
+  outline: none;
+  box-shadow: 0 3px 8px rgba(94, 114, 228, 0.15);
+}
+
+/* Invalid Fields */
+.is-invalid {
+  border-color: #f5365c;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23f5365c' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='4.5'/%3E%3Cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3E%3Ccircle cx='6' cy='8.2' r='.6' fill='%23f5365c' stroke='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px 16px;
+  padding-right: 40px;
+}
+
+.invalid-feedback {
+  color: #f5365c;
+  font-size: 0.85rem;
+  margin-top: 6px;
+}
+
+/* 4. Alert & Spinner */
+.alert {
+  padding: 12px 15px;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.alert-danger {
+  color: #842029;
+  background-color: #fff5f7;
+  border-color: #ffccd5;
+}
+
+.alert-danger::before {
+  content: "⚠️";
+  margin-right: 10px;
+  font-size: 1.1rem;
+}
+
+.spinner-border {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 0.2em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spinner-border 0.75s linear infinite;
+}
+
+@keyframes spinner-border {
+  to { transform: rotate(360deg); }
+}
+
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
+/* 5. Form Actions */
+.form-actions {
+  margin-top: 1.5rem;
+}
+
+.btn-signup {
+  background-color: #27ae60; /* green consistent with "Add" or "Update" */
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  width: 100%; /* full width button */
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-signup:hover:not(:disabled) {
+  background-color: #229954;
+  transform: translateY(-2px);
+}
+
+.btn-signup:disabled {
+  opacity: 0.65;
+  pointer-events: none;
+  transform: none;
+}
+
+/* 6. Login Prompt */
+.login-prompt {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.login-prompt a {
+  color: #5e72e4; /* brand color for links */
+  text-decoration: none;
+}
+
+.login-prompt a:hover {
+  text-decoration: underline;
+}
+
+/* 7. Responsive Adjustments */
+@media (max-width: 480px) {
+  .signup-card {
+    margin: 0 10px;
+    padding: 20px;
+  }
+}

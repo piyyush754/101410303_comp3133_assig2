@@ -1,0 +1,81 @@
+<div class="login-container">
+  <div class="login-card">
+    <!-- Header -->
+    <div class="login-header">
+      <h2>Welcome Back</h2>
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Username or Email -->
+      <div class="form-group">
+        <label for="usernameOrEmail">Username or Email</label>
+        <input
+          type="text"
+          id="usernameOrEmail"
+          formControlName="usernameOrEmail"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f['usernameOrEmail'].touched && f['usernameOrEmail'].errors }"
+          placeholder="Enter username or email"
+        />
+        <div
+          *ngIf="f['usernameOrEmail'].touched && f['usernameOrEmail'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['usernameOrEmail'].errors?.['required']">
+            Username or Email is required
+          </div>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f['password'].touched && f['password'].errors }"
+          placeholder="Enter password"
+        />
+        <div
+          *ngIf="f['password'].touched && f['password'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['password'].errors?.['required']">
+            Password is required
+          </div>
+          <div *ngIf="f['password'].errors?.['minlength']">
+            Password must be at least 6 characters
+          </div>
+        </div>
+      </div>
+
+      <!-- Error Alert -->
+      <div *ngIf="error" class="alert alert-danger mt-3">
+        {{ error }}
+      </div>
+
+      <!-- Login Button -->
+      <div class="form-actions">
+        <button
+          type="submit"
+          class="btn-login"
+          [disabled]="loading || loginForm.invalid"
+        >
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Login
+        </button>
+      </div>
+
+      <!-- Signup Prompt -->
+      <div class="signup-prompt">
+        <p>
+          Don't have an account?
+          <a routerLink="/signup">Sign up</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

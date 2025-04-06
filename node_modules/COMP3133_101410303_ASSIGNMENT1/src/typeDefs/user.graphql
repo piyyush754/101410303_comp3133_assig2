@@ -1,0 +1,21 @@
+# src/typeDefs/user.graphql
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  created_at: String
+  updated_at: String
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+extend type Query {
+  login(usernameOrEmail: String!, password: String!): AuthPayload
+}
+
+extend type Mutation {
+  signup(username: String!, email: String!, password: String!): AuthPayload
+}

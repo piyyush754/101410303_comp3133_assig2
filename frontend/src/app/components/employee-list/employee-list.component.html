@@ -1,0 +1,98 @@
+<!-- Hero Section -->
+<div class="hero">
+  <div class="hero-content">
+    <h1>Employee Management System</h1>
+    <p>Your team, your success. Manage employees effortlessly.</p>
+  </div>
+</div>
+
+<!-- Main Container -->
+<div class="container">
+  <!-- Top Header with Logout Button -->
+  <header class="header">
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </header>
+
+  <!-- Search Bar with Vertical Filters -->
+  <div class="search-bar">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+      <div class="search-inputs vertical">
+        <div class="form-group">
+          <label for="department">Department</label>
+          <select id="department" formControlName="department" class="form-control">
+            <option value="">All Departments</option>
+            <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="designation">Designation</label>
+          <select id="designation" formControlName="designation" class="form-control">
+            <option value="">All Designations</option>
+            <option *ngFor="let desg of designations" [value]="desg">{{ desg }}</option>
+          </select>
+        </div>
+
+        <div class="search-buttons">
+          <button type="submit" class="btn btn-search">Search</button>
+          <button type="button" class="btn btn-reset" (click)="resetSearch()">Reset</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Employee Table Section -->
+  <div *ngIf="loading" class="loading-spinner">
+    <div class="spinner"></div>
+    <p>Loading employees...</p>
+  </div>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  <div *ngIf="!loading" class="table-responsive">
+    <table class="table employee-table">
+      <thead>
+        <tr>
+          <th>Profile</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Designation</th>
+          <th>Salary</th>
+          <th>Joined</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of filteredEmployees">
+          <td class="profile-cell">
+            <div class="profile-img" *ngIf="employee.employee_photo">
+              <img [src]="employee.employee_photo" alt="Employee photo" />
+            </div>
+            <div class="profile-img placeholder" *ngIf="!employee.employee_photo">
+              <span>{{ employee.first_name.charAt(0) }}{{ employee.last_name.charAt(0) }}</span>
+            </div>
+          </td>
+          <td>{{ employee.first_name }} {{ employee.last_name }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.department }}</td>
+          <td>{{ employee.designation }}</td>
+          <td>${{ employee.salary.toFixed(2) }}</td>
+          <td>{{ formatDate(employee.date_of_joining) }}</td>
+          <td class="action-cell">
+            <button class="action-btn view-btn" (click)="viewEmployee(employee.id)" title="View Details">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="action-btn edit-btn" (click)="editEmployee(employee.id)" title="Edit">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="action-btn delete-btn" (click)="deleteEmployee(employee.id)" title="Delete">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="filteredEmployees.length === 0">
+          <td colspan="8" class="no-data">No employees found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

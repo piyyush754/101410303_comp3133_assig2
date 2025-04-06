@@ -1,0 +1,34 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/frontend/browser"
+      }
+    },
+    {
+      "src": "backend/src/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/backend/src/server.js"
+    },
+    {
+      "src": "/graphql",
+      "dest": "/backend/src/server.js"
+    },
+    {
+      "src": "/(.*\\.(js|css|ico|json|txt))",
+      "dest": "/dist/frontend/browser/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/dist/frontend/browser/index.html"
+    }
+  ]
+}

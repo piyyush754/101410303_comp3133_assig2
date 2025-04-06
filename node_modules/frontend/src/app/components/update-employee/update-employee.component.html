@@ -1,0 +1,192 @@
+<div class="update-container">
+  <div class="update-card">
+    <!-- Header Section -->
+    <div class="update-header">
+      <h2>Edit Employee Information</h2>
+      <button class="btn-back" (click)="cancel()">Return to Employee List</button>
+    </div>
+
+    <!-- Card Body -->
+    <div class="update-body">
+      <!-- Loading Spinner -->
+      <div *ngIf="loadingEmployee" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading employee data...</p>
+      </div>
+
+      <!-- Update Form -->
+      <form *ngIf="!loadingEmployee" [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <!-- Photo Upload Section -->
+        <div class="photo-section">
+          <div class="photo-upload-container">
+            <div class="photo-preview" *ngIf="photoPreview">
+              <img [src]="photoPreview" alt="Employee photo preview" />
+            </div>
+            <div class="photo-placeholder" *ngIf="!photoPreview">
+              <i class="fas fa-user"></i>
+              <span>No photo selected</span>
+            </div>
+            <div class="photo-upload">
+              <label for="photo">Upload Photo</label>
+              <input
+                type="file"
+                id="photo"
+                (change)="onFileChange($event)"
+                accept="image/*"
+              />
+              <label for="photo" class="btn btn-outline-primary">
+                {{ photoPreview ? 'Change Photo' : 'Select Photo' }}
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Grid -->
+        <div class="form-grid">
+          <!-- Left Column -->
+          <div class="form-column">
+            <div class="form-group">
+              <label for="first_name">First Name</label>
+              <input
+                type="text"
+                id="first_name"
+                formControlName="first_name"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': f.first_name.touched && f.first_name.errors }"
+              />
+              <div *ngIf="f.first_name.touched && f.first_name.errors" class="invalid-feedback">
+                <div *ngIf="f.first_name.errors.required">First name is required</div>
+                <div *ngIf="f.first_name.errors.minlength">Must be at least 2 characters</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="last_name">Last Name</label>
+              <input
+                type="text"
+                id="last_name"
+                formControlName="last_name"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': f.last_name.touched && f.last_name.errors }"
+              />
+              <div *ngIf="f.last_name.touched && f.last_name.errors" class="invalid-feedback">
+                <div *ngIf="f.last_name.errors.required">Last name is required</div>
+                <div *ngIf="f.last_name.errors.minlength">Must be at least 2 characters</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                formControlName="email"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }"
+              />
+              <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Enter a valid email address</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <select
+                id="gender"
+                formControlName="gender"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': f.gender.touched && f.gender.errors }"
+              >
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+              <div *ngIf="f.gender.touched && f.gender.errors" class="invalid-feedback">
+                <div *ngIf="f.gender.errors.required">Gender is required</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="form-column">
+            <div class="form-group">
+              <label for="designation">Designation</label>
+              <select
+                id="designation"
+                formControlName="designation"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': f.designation.touched && f.designation.errors }"
+              >
+                <option value="">Select Designation</option>
+                <option *ngFor="let d of designations" [value]="d">{{ d }}</option>
+              </select>
+              <div *ngIf="f.designation.touched && f.designation.errors" class="invalid-feedback">
+                <div *ngIf="f.designation.errors.required">Designation is required</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="department">Department</label>
+              <select
+                id="department"
+                formControlName="department"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': f.department.touched && f.department.errors }"
+              >
+                <option value="">Select Department</option>
+                <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+              </select>
+              <div *ngIf="f.department.touched && f.department.errors" class="invalid-feedback">
+                <div *ngIf="f.department.errors.required">Department is required</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="salary">Salary (USD)</label>
+              <input
+                type="number"
+                id="salary"
+                formControlName="salary"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': f.salary.touched && f.salary.errors }"
+                min="1000"
+                step="100"
+              />
+              <div *ngIf="f.salary.touched && f.salary.errors" class="invalid-feedback">
+                <div *ngIf="f.salary.errors.required">Salary is required</div>
+                <div *ngIf="f.salary.errors.min">Must be at least $1000</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="date_of_joining">Date of Joining</label>
+              <input
+                type="date"
+                id="date_of_joining"
+                formControlName="date_of_joining"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': f.date_of_joining.touched && f.date_of_joining.errors }"
+              />
+              <div *ngIf="f.date_of_joining.touched && f.date_of_joining.errors" class="invalid-feedback">
+                <div *ngIf="f.date_of_joining.errors.required">Date of joining is required</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error Alert -->
+        <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+          <button type="submit" class="btn-update" [disabled]="loading || employeeForm.invalid">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Update Employee
+          </button>
+          <button type="button" class="btn-cancel" (click)="cancel()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
