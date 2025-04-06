@@ -41,12 +41,19 @@
     </form>
   </div>
 
+  <!-- Add Employee Button -->
+  <div class="action-bar">
+    <button class="btn btn-add" (click)="addEmployee()">Add Employee</button>
+  </div>
+
   <!-- Employee Table Section -->
   <div *ngIf="loading" class="loading-spinner">
     <div class="spinner"></div>
     <p>Loading employees...</p>
   </div>
+
   <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
   <div *ngIf="!loading" class="table-responsive">
     <table class="table employee-table">
       <thead>
