@@ -1,16 +1,27 @@
-# Frontend
+# Employee Management System Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+This project is part of the Employee Management System assignment for COMP3133. It was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3 and has been customized with updated UI/UX, validations, and a consistent design across all pages.
 
-## Development server
+## Table of Contents
+
+- [Development Server](#development-server)
+- [Code Scaffolding](#code-scaffolding)
+- [Building](#building)
+- [Running Unit Tests](#running-unit-tests)
+- [Running End-to-End Tests](#running-end-to-end-tests)
+- [Deployment](#deployment)
+- [Additional Resources](#additional-resources)
+
+## Development Server
 
 To start a local development server, run:
 
 ```bash
 ng serve
-```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+
 
 ## Code scaffolding
 
@@ -53,7 +64,3 @@ ng e2e
 ```
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

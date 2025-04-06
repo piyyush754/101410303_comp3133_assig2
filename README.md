@@ -1,22 +1,26 @@
+
+---
+
+### **README for Backend**
+
+```markdown
 # Employee Management System (EMS) Backend
 
 ---
 
 ## Overview
 
-This project is a backend implementation of an **Employee Management System (EMS)** using **Node.js**, **Express**, **GraphQL (Apollo Server)**, and **MongoDB**. It provides secure authentication with **JWT** and a set of API endpoints to efficiently manage employee data.
+This project is a backend implementation of the Employee Management System (EMS) for COMP3133. It is built with **Node.js**, **Express**, **GraphQL (Apollo Server)**, and **MongoDB**. The API provides secure authentication using **JWT** and supports various employee management operations.
 
 ---
 
 ## Features
 
 - **User Authentication:**
-  - Secure signup and login with JWT-based authentication.
+  - Secure signup and login using JWT.
 - **Employee Management:**
-  - Retrieve all employees.
-  - Fetch employee details by ID.
+  - Retrieve, add, update, and delete employee records.
   - Search employees by department or designation.
-  - Add, update, and delete employee records.
 - **Validation & Error Handling:**
   - Input validation using `express-validator`.
   - Robust error handling for API stability.
@@ -24,6 +28,8 @@ This project is a backend implementation of an **Employee Management System (EMS
 ---
 
 ## Project Structure
+
+
 
 ```
 COMP3133_Assignment1/
@@ -232,22 +238,3 @@ For protected operations, include the JWT token in your HTTP headers:
   ```
 
 ---
-
-## Git & Repository Management
-
-- Commit frequently with meaningful commit messages.
-- Use the `.gitignore` file to exclude unnecessary files.
-- Ensure the repository is correctly structured before submission.
-
----
-
-## License
-
-This project is for educational purposes. © 2025 Employee Management System Backend.
-
----
-
-## Contact
-
-For questions or issues, please contact:  
-**Project Contributor:** Chauhan Helly
