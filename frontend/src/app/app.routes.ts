@@ -1,34 +1,34 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { SignupComponent } from './components/signup/signup.component';
-import { EmployeeListComponent } from './components/employee-list/employee-list.component';
-import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
-import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
-import { UpdateEmployeeComponent } from './components/update-employee/update-employee.component';
+import { UserLoginComponent } from './components/user-login/user-login.component';
+import { UserSignupComponent } from './components/user-signup/user-signup.component';
+import { EmployeeDirectoryComponent } from './components/employee-directory/employee-directory.component';
+import { EmployeeCreateComponent } from './components/employee-create/employee-create.component';
+import { EmployeeProfileComponent } from './components/employee-profile/employee-profile.component';
+import { EmployeeUpdateComponent } from './components/employee-update/employee-update.component';
 import { AuthGuard } from './guards/auth.guard'; // Optional if you're using route protection
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: 'login', component: UserLoginComponent },
+  { path: 'signup', component: UserSignupComponent },
   {
     path: 'employees',
-    component: EmployeeListComponent,
+    component: EmployeeDirectoryComponent,
     canActivate: [AuthGuard], // Optional protection
   },
   {
     path: 'add-employee',
-    component: AddEmployeeComponent,
+    component: EmployeeCreateComponent,
     canActivate: [AuthGuard], // Optional protection
   },
   {
     path: 'employee/:id',
-    component: EmployeeDetailsComponent,
+    component: EmployeeProfileComponent,
     canActivate: [AuthGuard],
   },
   {
     path: 'update-employee/:id',
-    component: UpdateEmployeeComponent,
+    component: EmployeeUpdateComponent,
     canActivate: [AuthGuard],
   },
   // Catch-all fallback route

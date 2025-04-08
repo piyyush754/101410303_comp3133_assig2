@@ -5,6 +5,7 @@
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
+        "rootDirectory": "frontend",
         "distDir": "dist/frontend"
       }
     },
@@ -24,11 +25,11 @@
     },
     {
       "src": "/(.*\\.(js|css|ico|json|txt))",
-      "dest": "/dist/frontend/$1"
+      "dest": "/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/dist/frontend/index.html"
+      "dest": "/index.html"
     }
   ]
 }
